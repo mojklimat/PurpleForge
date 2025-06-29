@@ -40,7 +40,7 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+ {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
