@@ -34,16 +34,11 @@ function App() {
               
               {/* Company Logo */}
               <div className="flex items-center px-4">
-                <img 
-                  src="/images/logo.png" 
-                  alt="Company Logo" 
-                  className="h-10 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
-                  onError={(e) => {
-                    // Fallback to placeholder if logo file doesn't exist
-                    const target = e.target as HTMLImageElement;
-                    target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%236366f1'/%3E%3Ctext x='60' y='25' font-family='Arial' font-size='14' fill='white' text-anchor='middle'%3ELOGO%3C/text%3E%3C/svg%3E";
-                  }}
-                />
+                  <img 
+                    src="/images/logo.png" 
+                    alt="Build on Bolt" 
+                    className="h-20 w-auto object-contain"
+                  />
               </div>
               
               <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors">
