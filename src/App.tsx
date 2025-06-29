@@ -49,16 +49,26 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+ {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-purple-900/30 border border-purple-500/30 rounded-full px-4 py-2 text-sm">
-                  <Zap className="h-4 w-4 text-purple-400" />
-                  <span className="text-purple-200">Revolutionary Purple Team Platform</span>
+                <div className="flex items-center justify-center lg:justify-start space-x-4">
+                  <div className="inline-flex items-center space-x-2 bg-purple-900/30 border border-purple-500/30 rounded-full px-4 py-2 text-sm">
+                    <Zap className="h-4 w-4 text-purple-400" />
+                    <span className="text-purple-200">Revolutionary Purple Team Platform</span>
+                  </div>
+                  
+                  {/* Your uploaded logo positioned to the right of the badge - made bigger */}
+                  <img 
+                    src="/images/logo.png" 
+                    alt="Build on Bolt" 
+                    className="h-20 w-auto object-contain"
+                  />
                 </div>
+                
                 <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
                   Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Red Meets Blue</span>
                 </h1>
