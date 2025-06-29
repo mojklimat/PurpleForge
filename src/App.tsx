@@ -31,16 +31,7 @@ function App() {
               <a href="#features" className="text-gray-300 hover:text-purple-400 transition-colors">Features</a>
               <a href="#audience" className="text-gray-300 hover:text-purple-400 transition-colors">Audience</a>
               <a href="#demo" className="text-gray-300 hover:text-purple-400 transition-colors">Demo</a>
-              
-              {/* Company Logo */}
-              <div className="flex items-center px-4">
-                  <img 
-                    src="/images/logo.png" 
-                    alt="Build on Bolt" 
-                    className="h-20 w-auto object-contain"
-                  />
-              </div>
-              
+           
               <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors">
                 Get Started
               </button>
