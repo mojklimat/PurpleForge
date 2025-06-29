@@ -31,16 +31,7 @@ function App() {
               <a href="#features" className="text-gray-300 hover:text-purple-400 transition-colors">Features</a>
               <a href="#audience" className="text-gray-300 hover:text-purple-400 transition-colors">Audience</a>
               <a href="#demo" className="text-gray-300 hover:text-purple-400 transition-colors">Demo</a>
-              
-              {/* Company Logo */}
-              <div className="flex items-center px-4">
-                  <img 
-                    src="/images/logo.png" 
-                    alt="Build on Bolt" 
-                    className="h-20 w-auto object-contain"
-                  />
-              </div>
-              
+           
               <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors">
                 Get Started
               </button>
@@ -55,10 +46,20 @@ function App() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-purple-900/30 border border-purple-500/30 rounded-full px-4 py-2 text-sm">
-                  <Zap className="h-4 w-4 text-purple-400" />
-                  <span className="text-purple-200">Revolutionary Purple Team Platform</span>
+                <div className="flex items-center justify-center lg:justify-start space-x-4">
+                  <div className="inline-flex items-center space-x-2 bg-purple-900/30 border border-purple-500/30 rounded-full px-4 py-2 text-sm">
+                    <Zap className="h-4 w-4 text-purple-400" />
+                    <span className="text-purple-200">Revolutionary Purple Team Platform</span>
+                  </div>
+                  
+                  {/* Your uploaded logo positioned to the right of the badge - made bigger */}
+                  <img 
+                    src="/images/logo.png" 
+                    alt="Build on Bolt" 
+                    className="h-20 w-auto object-contain"
+                  />
                 </div>
+                
                 <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
                   Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Red Meets Blue</span>
                 </h1>
