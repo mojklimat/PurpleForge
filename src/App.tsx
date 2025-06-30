@@ -80,12 +80,12 @@ function App() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  onClick={handleOpenEarlyAccess}
+               <button 
+                  onClick={handleStartSimulation}
                   className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
                 >
                   <Play className="h-5 w-5" />
-                  <span>Get Early Access</span>
+                  <span>Start Simulation</span>
                 </button>
                 <button className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2">
                   <span>Learn More</span>
