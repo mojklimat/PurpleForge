@@ -1,20 +1,40 @@
 import React, { useState } from 'react';
 import { Shield, Target, Zap, Users, Eye, Clock, TrendingUp, ChevronRight, Play, CheckCircle } from 'lucide-react';
-import SimulationPage from './components/SimulationPage';
+import Scenario1 from './components/Scenario1';
+import ScenarioSelector from './components/ScenarioSelector';
 import EarlyAccessModal from './components/EarlyAccessModal';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'simulation'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'scenarios' | 'simulation'>('home');
+  const [selectedScenario, setSelectedScenario] = useState<string | null>(null);
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
 
-  const handleStartSimulation = () => {
+ const handleStartSimulation = () => {
+    setCurrentPage('scenarios');
+  };
+
+  const handleSelectScenario = (scenarioId: string) => {
+    setSelectedScenario(scenarioId);
     setCurrentPage('simulation');
   };
 
   const handleBackToHome = () => {
     setCurrentPage('home');
+    setSelectedScenario(null);
   };
 
+  const handleBackToScenarios = () => {
+    setCurrentPage('scenarios');
+    setSelectedScenario(null);
+  };
+
+  if (currentPage === 'simulation') {
+    return <Scenario1 onBack={handleBackToScenarios} scenarioId={selectedScenario} />;
+  }
+
+  if (currentPage === 'scenarios') {
+    return <ScenarioSelector onSelectScenario={handleSelectScenario} onBack={handleBackToHome} />;
+  }
   const handleOpenEarlyAccess = () => {
     setIsEarlyAccessModalOpen(true);
   };
@@ -22,10 +42,6 @@ function App() {
   const handleCloseEarlyAccess = () => {
     setIsEarlyAccessModalOpen(false);
   };
-
-  if (currentPage === 'simulation') {
-    return <SimulationPage onBack={handleBackToHome} />;
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
