@@ -23,12 +23,13 @@ function App() {
     setCurrentPage('home');
     setSelectedScenario(null);
   };
+  
   const handleLearnMoreClick = () => {
-  setShowLearnMoreModal(true
+    setShowLearnMoreModal(true);
   };
 
-const handleCloseLearnMore = () => {
-  setShowLearnMoreModal(false);
+  const handleCloseLearnMore = () => {
+    setShowLearnMoreModal(false);
   };
 
 // Handle backdrop click to close modal
