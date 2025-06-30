@@ -1,20 +1,40 @@
 import React, { useState } from 'react';
 import { Shield, Target, Zap, Users, Eye, Clock, TrendingUp, ChevronRight, Play, CheckCircle } from 'lucide-react';
-import SimulationPage from './components/SimulationPage';
+import Scenario1 from './components/Scenario1';
+import ScenarioSelector from './components/ScenarioSelector';
 import EarlyAccessModal from './components/EarlyAccessModal';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'simulation'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'scenarios' | 'simulation'>('home');
+  const [selectedScenario, setSelectedScenario] = useState<string | null>(null);
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
 
-  const handleStartSimulation = () => {
+ const handleStartSimulation = () => {
+    setCurrentPage('scenarios');
+  };
+
+  const handleSelectScenario = (scenarioId: string) => {
+    setSelectedScenario(scenarioId);
     setCurrentPage('simulation');
   };
 
   const handleBackToHome = () => {
     setCurrentPage('home');
+    setSelectedScenario(null);
   };
 
+  const handleBackToScenarios = () => {
+    setCurrentPage('scenarios');
+    setSelectedScenario(null);
+  };
+
+  if (currentPage === 'simulation') {
+    return <Scenario1 onBack={handleBackToScenarios} scenarioId={selectedScenario} />;
+  }
+
+  if (currentPage === 'scenarios') {
+    return <ScenarioSelector onSelectScenario={handleSelectScenario} onBack={handleBackToHome} />;
+  }
   const handleOpenEarlyAccess = () => {
     setIsEarlyAccessModalOpen(true);
   };
@@ -22,10 +42,6 @@ function App() {
   const handleCloseEarlyAccess = () => {
     setIsEarlyAccessModalOpen(false);
   };
-
-  if (currentPage === 'simulation') {
-    return <SimulationPage onBack={handleBackToHome} />;
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -80,12 +96,12 @@ function App() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  onClick={handleOpenEarlyAccess}
+               <button 
+                  onClick={handleStartSimulation}
                   className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
                 >
                   <Play className="h-5 w-5" />
-                  <span>Get Early Access</span>
+                  <span>Start Simulation</span>
                 </button>
                 <button className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2">
                   <span>Learn More</span>
