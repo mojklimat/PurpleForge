@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Shield, Target, Zap, Users, Eye, Clock, TrendingUp, ChevronRight, Play, CheckCircle } from 'lucide-react';
+import { Shield, Target, Zap, Users, Eye, Clock, TrendingUp, ChevronRight, Play, CheckCircle, X, GraduationCap, Trophy, Gamepad2 } from 'lucide-react';
 import Scenario1 from './components/Scenario1';
 import ScenarioSelector from './components/ScenarioSelector';
 import EarlyAccessModal from './components/EarlyAccessModal';
 
 function App() {
+  const [showLearnMoreModal, setShowLearnMoreModal] = useState(false);
   const [currentPage, setCurrentPage] = useState<'home' | 'scenarios' | 'simulation'>('home');
   const [selectedScenario, setSelectedScenario] = useState<string | null>(null);
   const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
@@ -22,6 +23,21 @@ function App() {
     setCurrentPage('home');
     setSelectedScenario(null);
   };
+  const handleLearnMoreClick = () => {
+  setShowLearnMoreModal(true
+  };
+
+const handleCloseLearnMore = () => {
+  setShowLearnMoreModal(false);
+  };
+
+// Handle backdrop click to close modal
+const handleBackdropClick = (e: React.MouseEvent) => {
+  if (e.target === e.currentTarget) {
+    setShowLearnMoreModal(false);
+     }
+  };
+
 
   const handleBackToScenarios = () => {
     setCurrentPage('scenarios');
@@ -45,6 +61,93 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Learn More Modal */}
+      {showLearnMoreModal && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={handleBackdropClick}
+        >
+          <div 
+            className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-purple-500/30 max-w-2xl w-full shadow-2xl shadow-purple-500/20 animate-slide-in-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="relative p-8 pb-6">
+              <button
+                onClick={handleCloseLearnMore}
+                className="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+              
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="bg-gradient-to-br from-purple-600 to-pink-600 p-3 rounded-2xl">
+                  <GraduationCap className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-white">Learn More</h2>
+                  <p className="text-purple-300">About PurpleForge</p>
+                </div>
+              </div>
+
+              {/* Main Message */}
+              <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl p-6 border border-purple-500/30 mb-6">
+                <p className="text-xl text-gray-200 leading-relaxed text-center">
+                  "We bring educational opportunities with fun and a little bit of competition. Let our team bring you into exciting world of cybersecurity"
+                </p>
+              </div>
+
+              {/* Feature Highlights */}
+              <div className="grid md:grid-cols-3 gap-4 mb-6">
+                <div className="text-center p-4 bg-slate-800/50 rounded-xl border border-purple-500/20">
+                  <div className="bg-blue-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <GraduationCap className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-white font-semibold mb-2">Educational</h3>
+                  <p className="text-gray-400 text-sm">Learn through hands-on cybersecurity scenarios</p>
+                </div>
+
+                <div className="text-center p-4 bg-slate-800/50 rounded-xl border border-purple-500/20">
+                  <div className="bg-green-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Gamepad2 className="h-6 w-6 text-green-400" />
+                  </div>
+                  <h3 className="text-white font-semibold mb-2">Fun</h3>
+                  <p className="text-gray-400 text-sm">Engaging simulations that make learning enjoyable</p>
+                </div>
+
+                <div className="text-center p-4 bg-slate-800/50 rounded-xl border border-purple-500/20">
+                  <div className="bg-yellow-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Trophy className="h-6 w-6 text-yellow-400" />
+                  </div>
+                  <h3 className="text-white font-semibold mb-2">Competitive</h3>
+                  <p className="text-gray-400 text-sm">Challenge yourself and compete with others</p>
+                </div>
+              </div>
+
+              {/* Call to Action */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => {
+                    setShowLearnMoreModal(false);
+                    handleStartSimulation();
+                  }}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
+                >
+                  <Play className="h-5 w-5" />
+                  <span>Start Your Journey</span>
+                </button>
+                <button
+                  onClick={handleCloseLearnMore}
+                  className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-3 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2"
+                >
+                  <span>Maybe Later</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,10 +206,13 @@ function App() {
                   <Play className="h-5 w-5" />
                   <span>Start Simulation</span>
                 </button>
-                <button className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2">
+                <button 
+                  onClick={handleLearnMoreClick}  // Added this onClick handler
+                  className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2"
+                  >
                   <span>Learn More</span>
                   <ChevronRight className="h-5 w-5" />
-                </button>
+                  </button>
               </div>
             </div>
             <div className="relative">
@@ -301,9 +407,6 @@ function App() {
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105"
               >
                 Get Early Access
-              </button>
-              <button className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-lg font-semibold transition-all">
-                Schedule Demo
               </button>
             </div>
           </div>
