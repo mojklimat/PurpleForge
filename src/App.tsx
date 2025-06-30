@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Shield, Target, Zap, Users, Eye, Clock, TrendingUp, ChevronRight, Play, CheckCircle } from 'lucide-react';
 import SimulationPage from './components/SimulationPage';
+import EarlyAccessModal from './components/EarlyAccessModal';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'simulation'>('home');
+  const [isEarlyAccessModalOpen, setIsEarlyAccessModalOpen] = useState(false);
 
   const handleStartSimulation = () => {
     setCurrentPage('simulation');
@@ -11,6 +13,14 @@ function App() {
 
   const handleBackToHome = () => {
     setCurrentPage('home');
+  };
+
+  const handleOpenEarlyAccess = () => {
+    setIsEarlyAccessModalOpen(true);
+  };
+
+  const handleCloseEarlyAccess = () => {
+    setIsEarlyAccessModalOpen(false);
   };
 
   if (currentPage === 'simulation') {
@@ -30,17 +40,19 @@ function App() {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-300 hover:text-purple-400 transition-colors">Features</a>
               <a href="#audience" className="text-gray-300 hover:text-purple-400 transition-colors">Audience</a>
-              <a href="#demo" className="text-gray-300 hover:text-purple-400 transition-colors">Demo</a>
            
-              <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors">
-                Get Started
+              <button 
+                onClick={handleOpenEarlyAccess}
+                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors"
+              >
+                Get Early Access
               </button>
             </div>
           </div>
         </div>
       </nav>
 
- {/* Hero Section */}
+      {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -69,11 +81,11 @@ function App() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
-                  onClick={handleStartSimulation}
+                  onClick={handleOpenEarlyAccess}
                   className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
                 >
                   <Play className="h-5 w-5" />
-                  <span>Start Simulation</span>
+                  <span>Get Early Access</span>
                 </button>
                 <button className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2">
                   <span>Learn More</span>
@@ -268,26 +280,15 @@ function App() {
               Join the security revolution. Transform your defensive capabilities with PurpleForge's collaborative command platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105">
-                Start Free Trial
+              <button 
+                onClick={handleOpenEarlyAccess}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105"
+              >
+                Get Early Access
               </button>
               <button className="border border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-4 rounded-lg font-semibold transition-all">
                 Schedule Demo
               </button>
-            </div>
-            <div className="mt-8 flex items-center justify-center space-x-6 text-sm text-gray-400">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-green-400" />
-                <span>No credit card required</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-green-400" />
-                <span>14-day free trial</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-green-400" />
-                <span>Full platform access</span>
-              </div>
             </div>
           </div>
         </div>
@@ -307,6 +308,12 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Early Access Modal */}
+      <EarlyAccessModal 
+        isOpen={isEarlyAccessModalOpen} 
+        onClose={handleCloseEarlyAccess} 
+      />
     </div>
   );
 }
