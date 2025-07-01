@@ -185,11 +185,18 @@ const handleBackdropClick = (e: React.MouseEvent) => {
                   </div>
                   
                   {/* Your uploaded logo positioned to the right of the badge - made bigger */}
-                  <img 
-                    src="/images/logo.png" 
-                    alt="Build on Bolt" 
-                    className="h-20 w-auto object-contain"
-                  />
+                  <a 
+                    href="https://bolt.new/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <img 
+                      src="/images/white_circle_360x360.png" 
+                      alt="Built with Bolt.new" 
+                      className="h-20 w-auto object-contain"
+                    />
+                  </a>
                 </div>
                 
                 <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
